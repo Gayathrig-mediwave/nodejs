@@ -1,5 +1,10 @@
 const functionfile = require("./function");
 const fs = require("fs");
+const readStream = fs.createReadStream("./content/blog.txt", {
+  encoding: "utf-8",
+});
+//const writeStream = fs.createWriteStream("./content/blog1.txt");
+const writeStream = fs.createWriteStream("./content/blog2.txt");
 console.log("========Arithmetic Functions===========");
 const movies = require("./movie");
 const sum = functionfile.addfunction(3, 2);
@@ -103,3 +108,12 @@ if (!fs.existsSync("./new_assets")) {
     console.log("folder deleted");
   });
 }
+//Streams
+// readStream.on("data", (chunk) => {
+//   console.log("===New chunk===");
+//   console.log(chunk);
+//   writeStream.write("\nNew Chunk\n");
+//   writeStream.write(chunk);
+// });
+//piping:
+readStream.pipe(writeStream);

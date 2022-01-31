@@ -1,4 +1,5 @@
 const functionfile = require("./function");
+const fs = require("fs");
 console.log("========Arithmetic Functions===========");
 const movies = require("./movie");
 const sum = functionfile.addfunction(3, 2);
@@ -63,4 +64,42 @@ if (movieIndexToDel == -1) {
   movies.splice(movieIndexToDel, 1);
   console.log("splicing the Id:", delteId);
   console.log(movies);
+}
+// learning time out function
+setTimeout(() => {
+  console.log("in the time out function");
+  clearInterval(int);
+}, 3000);
+const int = setInterval(() => {
+  console.log("in the interval");
+}, 1000);
+//reading file
+fs.readFile("./content/content1.txt", (err, data) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(data.toString());
+});
+//writing file
+fs.writeFile("./content/content1.txt", "hello Gayathri", () => {
+  console.log("file written");
+});
+fs.writeFile("./content/content2.txt", "hello Gayathri Devi", () => {
+  console.log("file written");
+});
+//directories
+if (!fs.existsSync("./new_assets")) {
+  fs.mkdir("./new_assets", (err) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log("folder created");
+  });
+} else {
+  fs.rmdir("./new_assets", (err) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log("folder deleted");
+  });
 }
